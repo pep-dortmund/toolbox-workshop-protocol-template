@@ -1,4 +1,4 @@
-# toolbox-workshop_protocol-template
+# toolbox-workshop-protocol-template
 Dieses Repository enthält ein Template für Versuchsprotokolle, basierend auf dem [PeP et al.](https://pep-dortmund.org) [Toolbox Workshop](https://toolbox.pep-dortmund.org).
 
 ## Vorlage für Praktikumsprotokolle
@@ -36,5 +36,6 @@ cp -r vXXX v101
 cd v101
 mv vXXX.tex v101.tex
 ```
+
 Jetzt noch Datum, Versuchsnummer und Name in `v101.tex` anpassen.
 Und schließlich _adden, commiten, pushen_.
