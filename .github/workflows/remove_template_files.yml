@@ -39,6 +39,9 @@ jobs:
         run: |
           mv README.md notes.md
           rm -rf .github
+          touch README.md
+          echo '# Generated from toolbox-workshop-protocol-template' >> README.md
+          echo 'https://github.com/pep-dortmund/toolbox-workshop-protocol-template' >> README.md
 
 
       # save changed files
