@@ -35,19 +35,15 @@ jobs:
         run: |
           sudo apt-get install --yes poppler-utils
           pip install https://github.com/maxnoe/texlive-batch-installation/archive/v0.3.2.tar.gz
+          curl -fLO https://raw.githubusercontent.com/pep-dortmund/toolbox-workshop/main/tex-packages.txt
           python -m install_texlive -p $HOME/texlive -t $TEXLIVE_VERSION --collections='-a' --package-file tex-packages.txt --update -v
 
           # add to path for following steps
           echo "$HOME/texlive/$TEXLIVE_VERSION/bin/x86_64-linux" >> $GITHUB_PATH
           export PATH="$HOME/texlive/$TEXLIVE_VERSION/bin/x86_64-linux:$PATH"
-          tlmgr install --with-doc tex-overview
 
           # generate the lualatex font cache, otherwise it is done in parallel when calling make
           luaotfload-tool --update --force
-
-          # copy latexmkrc to make sure its used also for vXXX
-          mkdir -p ~/.config/latexmk
-          cp common/latexmkrc ~/.config/latexmk/
 
       - name: Check Setup
         run: |
