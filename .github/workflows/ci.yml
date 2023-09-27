@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "**"
+  pull_request:
+
+env:
+  TEXLIVE_VERSION: 2023
+  TERM: xterm
+  # silences warnings from jupyter about not being able to debug the stdlib
+  PYDEVD_DISABLE_FILE_VALIDATION: 1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        # We need login shells (-l) for micromamba to work.
+        shell: bash -leo pipefail {0}
+
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: mamba-org/setup-micromamba@v1
+        with:
+          environment-file: environment.yml
+
+      - name: Setup
+        run: |
+          sudo apt-get install --yes poppler-utils
+          pip install https://github.com/maxnoe/texlive-batch-installation/archive/v0.3.2.tar.gz
+          curl -fLO https://raw.githubusercontent.com/pep-dortmund/toolbox-workshop/main/tex-packages.txt
+          python -m install_texlive -p $HOME/texlive -t $TEXLIVE_VERSION --collections='-a' --package-file tex-packages.txt --update -v
+
+          # add to path for following steps
+          echo "$HOME/texlive/$TEXLIVE_VERSION/bin/x86_64-linux" >> $GITHUB_PATH
+          export PATH="$HOME/texlive/$TEXLIVE_VERSION/bin/x86_64-linux:$PATH"
+
+          # generate the lualatex font cache, otherwise it is done in parallel when calling make
+          luaotfload-tool --update --force
+
+      - name: Check Setup
+        run: |
+          echo "which python"
+          which python
+          echo "python --version"
+          python --version
+          echo "conda list"
+          conda list
+
+      - name: Build
+        run: |
+          make -j 2
+
+      - name: check for errors
+        if: always()
+        run: "! grep -R --include='*.log' '^!' -A 5 -B 5"
