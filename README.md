@@ -6,7 +6,7 @@ Dieses Repository enthält ein Template für Versuchsprotokolle, basierend auf d
 Dieses Repository enthält die Struktur für Praktikumsprotokolle mit allem,
 was im Toolbox Workshop besprochen wurde.
 
-In Basisordner liegen
+Im Basisordner liegen
 - der LaTeX-Header ('header.tex'),
 - die Literaturdatenbank (`lit.bib`),
 - sowie die der LaTeX-Header für matplotlib (`header-matplotlib.tex`)
@@ -36,6 +36,7 @@ cp -r vXXX v101
 cd v101
 mv vXXX.tex v101.tex
 ```
-
+Anschließend muss das `Makefile` angepasst werden, hier muss auch `vXXX` in `v101`
+geändert werden.
 Jetzt noch Datum, Versuchsnummer und Name in `v101.tex` anpassen.
 Und schließlich _adden, commiten, pushen_.
