@@ -12,18 +12,19 @@
   \centering
   \caption{Eine Beispieltabelle mit Messdaten.}
   \label{tab:tabelle}
-  \sisetup{table-format=1.2}
+  \sisetup{table-format=1.1, per-mode=reciprocal}
   \begin{tblr}{
-      colspec = {S[table-format=3.0] S S S S[table-format=3.2]},
+      colspec = {S[table-format=3.0] S[table-format=2.1] S},
       row{1} = {guard, mode=math},
+      vline{4} = {2}{-}{text=\clap{$\pm$}},
     }
     \toprule
-    f & l_\text{start} & l_1 & l_{\text{kor},1} & B_1 \\
+    U \mathbin{/} \unit{\volt} & I \mathbin{/} \unit{\micro\ampere} & \SetCell[c=2]{c} N \mathbin{/} \unit{\per\second} & \\
     \midrule
-    100 & 1.14 & 3.51 & 0.00 &   4.30 \\
-    300 & 1.27 & 2.42 & 0.13 &  41.14 \\
-    500 & 1.21 & 1.70 & 0.25 & 168.73 \\
-    \toprule
+    360 & 0.1 & 98.3 & 0.9 \\
+    400 & 0.2 & 99.8 & 1.0 \\
+    420 & 0.2 & 99.1 & 0.9 \\
+    \bottomrule
   \end{tblr}
 \end{table}
 
