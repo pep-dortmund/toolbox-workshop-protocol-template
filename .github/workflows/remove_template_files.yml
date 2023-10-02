@@ -26,7 +26,7 @@ jobs:
             touch README.md
             NAME="${GITHUB_REPOSITORY##*/}"
             echo "# $NAME" >> README.md
-            echo "Generated from [toolbox-workshop-protocol-template](https://github.com/pep-dortmund/toolbox-workshop-protocol-template)" >> README.md
+            echo "Generated from [toolbox-workshop-protocol-template](https://github.com/pep-dortmund/toolbox-workshop-protocol-template)." >> README.md
             echo "Find more information in [notes.md](notes.md)." >> README.md
 
       # save changed files
