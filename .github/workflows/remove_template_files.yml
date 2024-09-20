@@ -8,11 +8,11 @@ on:
 
 jobs:
 
-  # Run a cleaning process only if the workflow is triggered by the non-"template_test" repository.
+  # Run a cleaning process only if the workflow is triggered by the non-"toolbox-workshop-protocol-template" repository.
   template-cleanup:
     name: Template Cleanup
     runs-on: ubuntu-latest
-    if: github.event.repository.name != 'template_test'
+    if: github.event.repository.name != 'toolbox-workshop-protocol-template'
     permissions:
       contents: write
     steps:
