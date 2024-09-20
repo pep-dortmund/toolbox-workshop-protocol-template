@@ -1,26 +1,30 @@
-# inspired by: https://github.com/orgs/community/discussions/22183#discussioncomment-6321583
+# inspired by: 
+# https://github.com/JetBrains/intellij-platform-plugin-template/blob/main/.github/workflows/template-cleanup.yml
 
 name: Template Cleanup
-run-name: template-cleanup
-
 on:
-  create:
+  push:
+    branches: [main]
 
 jobs:
+
+  # Run a cleaning process only if the workflow is triggered by the non-"template_test" repository.
   template-cleanup:
-    name: template-cleanup
+    name: Template Cleanup
     runs-on: ubuntu-latest
-    
+    if: github.event.repository.name != 'template_test'
     permissions:
       contents: write
-
     steps:
-      - uses: actions/checkout@v3
-      
+
+      # Check out the current repository
+      - name: Fetch Sources
+        uses: actions/checkout@v4
+
       # Cleanup project
       - name: Cleanup
         run: |
-            mv README.md notes.md
+          mv README.md notes.md
             rm -rf .github
             rm -f environment.yml
             touch README.md
@@ -29,11 +33,17 @@ jobs:
             echo "Generated from [toolbox-workshop-protocol-template](https://github.com/pep-dortmund/toolbox-workshop-protocol-template)" >> README.md
             echo "Find more information in [notes.md](notes.md)." >> README.md
 
-      # save changed files
-      - name: Commit changed files
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "Setup repo"
+      # Commit modified files
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Template cleanup"
 
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Push changes
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
