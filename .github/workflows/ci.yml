@@ -11,21 +11,19 @@ on:
 env:
   TEXLIVE_VERSION: 2024
   TERM: xterm
-  # silences warnings from jupyter about not being able to debug the stdlib
-  PYDEVD_DISABLE_FILE_VALIDATION: 1
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.event.repository.name == 'toolbox-workshop-protocol-template'
 
     defaults:
       run:
         # We need login shells (-l) for micromamba to work.
         shell: bash -leo pipefail {0}
 
-
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: mamba-org/setup-micromamba@v1
         with:
@@ -33,7 +31,6 @@ jobs:
 
       - name: Setup
         run: |
-          sudo apt-get install --yes poppler-utils
           pip install install-texlive
           curl -fLO https://raw.githubusercontent.com/pep-dortmund/toolbox-workshop/main/tex-packages.txt
           python -m install_texlive -p $HOME/texlive -t $TEXLIVE_VERSION --collections='-a' --package-file tex-packages.txt --update -v

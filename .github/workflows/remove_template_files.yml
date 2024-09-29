@@ -1,4 +1,4 @@
-# inspired by: 
+# inspired by:
 # https://github.com/JetBrains/intellij-platform-plugin-template/blob/main/.github/workflows/template-cleanup.yml
 
 name: Template Cleanup
@@ -30,8 +30,8 @@ jobs:
             touch README.md
             NAME="${GITHUB_REPOSITORY##*/}"
             echo "# $NAME" >> README.md
-            echo "Generated from [toolbox-workshop-protocol-template](https://github.com/pep-dortmund/toolbox-workshop-protocol-template)" >> README.md
-            echo "Find more information in [notes.md](notes.md)." >> README.md
+            echo "Generated from [toolbox-workshop-protocol-template](https://github.com/pep-dortmund/toolbox-workshop-protocol-template)." >> README.md
+            echo -e "\nFind more information in [notes.md](notes.md)." >> README.md
 
       # Commit modified files
       - name: Commit files
