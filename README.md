@@ -7,10 +7,11 @@ Dieses Repository enthält die Struktur für Praktikumsprotokolle mit allem,
 was im Toolbox Workshop besprochen wurde.
 
 Im Basisordner liegen
-- der LaTeX-Header ('header.tex'),
+- der LaTeX-Header (`header.tex`),
 - die Literaturdatenbank (`lit.bib`),
 - sowie die der LaTeX-Header für matplotlib (`header-matplotlib.tex`)
-- und die matplotlibrc.
+- und die `matplotlibrc`.
+
 Außerdem haben wir in `programme.bib` die korrekten Quellen für die verwendete Software angegeben.
 
 In dem Unterordner `vXXX` liegt ein Template für einen einzelnen Versuch,
