@@ -7,10 +7,11 @@ Dieses Repository enthält die Struktur für Praktikumsprotokolle mit allem,
 was im Toolbox Workshop besprochen wurde.
 
 Im Basisordner liegen
-- der LaTeX-Header ('header.tex'),
+- der LaTeX-Header (`header.tex`),
 - die Literaturdatenbank (`lit.bib`),
 - sowie die der LaTeX-Header für matplotlib (`header-matplotlib.tex`)
-- und die matplotlibrc.
+- und die `matplotlibrc`.
+
 Außerdem haben wir in `programme.bib` die korrekten Quellen für die verwendete Software angegeben.
 
 In dem Unterordner `vXXX` liegt ein Template für einen einzelnen Versuch,
@@ -25,11 +26,11 @@ Tragt in `header.tex` in den Zeilen 132-136 eure Daten ein.
 ### Ein neues Protokoll steht an:
 
 Dupliziert den `vXXX`-Ordner und benennt ihn nach eurem Versuch.
-Hier wird das einmal beispielhaft mit dem Versuch v101 gezeigt.
+Hier wird das einmal beispielhaft mit dem Versuch _v101_ gezeigt.
 Wir nutzen dazu das Terminal und fangen im Hauptordner des Repositories an.
 
-_Wie erkenne ich den Hauptordner? Gib im Terminal `ls -a` ein,
-Siehst du `.git` in der Liste, bist du im Hauptordner._
+_Wie erkenne ich den Hauptordner?_ Gib im Terminal `ls -a` ein,
+Siehst du `.git` in der Liste, bist du im Hauptordner.
 
 ```
 cp -r vXXX v101
@@ -39,4 +40,4 @@ mv vXXX.tex v101.tex
 Anschließend muss das `Makefile` angepasst werden, hier muss auch `vXXX` in `v101`
 geändert werden.
 Jetzt noch Datum, Versuchsnummer und Name in `v101.tex` anpassen.
-Und schließlich _adden, commiten, pushen_.
+Und schließlich _adden_, _commiten_, _pushen_.
