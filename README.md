@@ -21,7 +21,7 @@ welches für die jeweiligen Versuche kopiert und „ausgefüllt“ werden kann.
 
 Das Repository ist als _template_ angelegt. Es kann also direkt in ein eigenes Github Repository umgewandelt werden.
 Füge als nächsten Schritt deine\*n Praktikumspartner\*in als _collaborator_ hinzu.
-Tragt in `header.tex` in den Zeilen 132-136 eure Daten ein.
+Tragt in `header.tex` in den Zeilen 139-143 eure Daten ein.
 
 ### Ein neues Protokoll steht an:
 
