@@ -1,6 +1,6 @@
-NUMBER = XXX
+NUMBER = vXXX
 
-all: build/v$(NUMBER).pdf
+all: build/$(NUMBER).pdf
 
 # hier Python-Skripte:
 build/plot.pdf: plot.py ../matplotlibrc ../header-matplotlib.tex | build
@@ -10,9 +10,9 @@ build/plot.pdf: plot.py ../matplotlibrc ../header-matplotlib.tex | build
 	TEXINPUTS=$$(pwd)/..: MATPLOTLIBRC=../matplotlibrc python plot.py
 
 # hier weitere Abhängigkeiten für build/vXXX.pdf deklarieren:
-build/v$(NUMBER).pdf: build/plot.pdf
+build/$(NUMBER).pdf: build/plot.pdf
 
-build/v$(NUMBER).pdf: FORCE | build
+build/$(NUMBER).pdf: FORCE | build
 	# to find header and bib files in the main directory
 	TEXINPUTS=..: \
 	BIBINPUTS=..: \
@@ -22,7 +22,7 @@ build/v$(NUMBER).pdf: FORCE | build
 	  --output-directory=build \
 	  --interaction=nonstopmode \
 	  --halt-on-error \
-	v$(NUMBER).tex
+	$(NUMBER).tex
 
 build:
 	mkdir -p build
