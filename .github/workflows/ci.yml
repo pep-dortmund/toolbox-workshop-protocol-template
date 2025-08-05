@@ -9,7 +9,7 @@ on:
   pull_request:
 
 env:
-  TEXLIVE_VERSION: 2024
+  TEXLIVE_VERSION: 2025
   TERM: xterm
 
 jobs:
