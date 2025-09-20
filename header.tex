@@ -132,6 +132,21 @@
 % Trennung von Wörtern mit Strichen
 \usepackage[shortcuts]{extdash}
 
+% Code Einbindung
+\usepackage{xcolor}
+\definecolor{LightGray}{gray}{0.9}
+\usepackage{minted}
+\setminted{
+  autogobble,
+  breaklines,
+  stripnl=true,
+  linenos,
+  bgcolor=LightGray,
+  fontsize=\footnotesize,
+  baselinestretch=1.2,
+  style=tango
+}
+
 \author{%
   AUTOR A\\%
   \href{mailto:authorA@udo.edu}{authorA@udo.edu}%
