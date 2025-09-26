@@ -24,6 +24,18 @@ build/$(TEXFILE).pdf: FORCE | build
 	  --halt-on-error \
 	$(TEXFILE).tex
 
+preview: FORCE | build
+	TEXINPUTS=..: \
+	BIBINPUTS=..: \
+	max_print_line=1048576 \
+	latexmk \
+		-pvc \
+	  --lualatex \
+	  --output-directory=build \
+	  --interaction=nonstopmode \
+	  --halt-on-error \
+	$(TEXFILE).tex
+
 build:
 	mkdir -p build
 
