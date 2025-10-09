@@ -44,4 +44,8 @@
 % <name> <#arguments> <left> <right> <body>
 \DeclarePairedDelimiterX{\braket}[2]{\langle}{\rangle}{#1 \delimsize| #2}
 
+
+\NewDocumentCommand \OverfullCenter {+m} {
+\noindent\makebox[\linewidth]{#1} }
+
 \ExplSyntaxOff
