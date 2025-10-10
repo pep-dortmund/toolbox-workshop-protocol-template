@@ -12,29 +12,11 @@ build/plot.pdf: plot.py ../matplotlibrc ../header-matplotlib.tex | build
 # hier weitere Abhängigkeiten für build/vXXX.pdf deklarieren:
 build/$(TEXFILE).pdf: build/plot.pdf
 
-build/$(TEXFILE).pdf: FORCE | build
-	# to find header and bib files in the main directory
-	TEXINPUTS=..: \
-	BIBINPUTS=..: \
-	max_print_line=1048576 \
-	latexmk \
-	  --lualatex \
-	  --output-directory=build \
-	  --interaction=nonstopmode \
-	  --halt-on-error \
-	$(TEXFILE).tex
+build/$(TEXFILE).pdf: $(TEXFILE).tex FORCE | build
+	TEXINPUTS=..: latexmk -r $$(pwd)/../latexmkrc $<
 
-preview: FORCE | build
-	TEXINPUTS=..: \
-	BIBINPUTS=..: \
-	max_print_line=1048576 \
-	latexmk \
-		-pvc \
-	  --lualatex \
-	  --output-directory=build \
-	  --interaction=nonstopmode \
-	  --halt-on-error \
-	$(TEXFILE).tex
+preview: $(TEXFILE).tex FORCE | build
+	TEXINPUTS=..: latexmk -r $$(pwd)/../latexmkrc $<
 
 build:
 	mkdir -p build
