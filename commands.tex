@@ -1,0 +1,51 @@
+\usepackage{expl3}
+\usepackage{xparse}
+
+\usepackage{mleftright}
+\setlength{\delimitershortfall}{-1sp}
+
+\ExplSyntaxOn
+
+\NewDocumentCommand \I {} { \symup{i} }
+\NewDocumentCommand \E {} { \symup{e} }
+\NewDocumentCommand \mpi {} { \symup{\pi} }
+
+\NewDocumentCommand \dif {m} { \mathinner{\symup{d} #1} }
+\NewDocumentCommand \Dif {m} { \mathinner{\symup{D} #1} }
+\NewDocumentCommand \del {m} { \mathinner{\symup{\delta} #1} }
+\NewDocumentCommand \Del {m} { \mathinner{\symup{\Delta} #1} }
+
+\let\vaccent=\v % alten Befehl kopieren
+\RenewDocumentCommand \v {} % Befehl überschreiben
+  {
+    \TextOrMath{
+      \vaccent % Textmodus
+    }{
+      \symbf % Mathemodus
+    }
+  }
+
+\AtBeginDocument{ % wird bei \begin{document} ausgeführt
+  % werden sonst wieder von unicode-math überschrieben
+  \RenewDocumentCommand \Re {} {\operatorname{Re}}
+  \RenewDocumentCommand \Im {} {\operatorname{Im}}
+}
+
+\let\ltext=\l
+\RenewDocumentCommand \l {}{ \TextOrMath{ \ltext }{ \mleft } }
+\let\raccent=\r
+\RenewDocumentCommand \r {}{ \TextOrMath{ \raccent }{ \mright } }
+
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+
+\DeclarePairedDelimiter{\bra}{\langle}{\rvert}
+\DeclarePairedDelimiter{\ket}{\lvert}{\rangle}
+% <name> <#arguments> <left> <right> <body>
+\DeclarePairedDelimiterX{\braket}[2]{\langle}{\rangle}{#1 \delimsize| #2}
+
+
+\NewDocumentCommand \OverfullCenter {+m} {
+\noindent\makebox[\linewidth]{#1} }
+
+\ExplSyntaxOff
