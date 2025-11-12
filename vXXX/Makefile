@@ -1,5 +1,7 @@
 TEXFILE = vXXX
 
+HEADERS = $(CURDIR)/..
+
 all: build/$(TEXFILE).pdf
 
 # hier Python-Skripte:
@@ -13,10 +15,10 @@ build/plot.pdf: plot.py ../matplotlibrc ../header-matplotlib.tex | build
 build/$(TEXFILE).pdf: build/plot.pdf
 
 build/$(TEXFILE).pdf: $(TEXFILE).tex FORCE | build
-	TEXINPUTS=..: latexmk -r $$(pwd)/../latexmkrc $<
+	TEXINPUTS=$(HEADERS): latexmk -r $(HEADERS)/latexmkrc $<
 
 preview: $(TEXFILE).tex FORCE | build
-	TEXINPUTS=..: latexmk -r $$(pwd)/../latexmkrc $<
+	TEXINPUTS=$(HEADERS): latexmk -r $(HEADERS)/latexmkrc $<
 
 build:
 	mkdir -p build
