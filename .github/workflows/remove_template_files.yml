@@ -19,8 +19,8 @@ jobs:
 
       # Check out the current repository
       - name: Fetch Sources
-        uses: actions/checkout@v4
-
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      
       # Cleanup project
       - name: Cleanup
         run: |
@@ -43,7 +43,7 @@ jobs:
 
       # Push changes
       - name: Push changes
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@881a6320fdb16eb5318c5054f31c218aec2b324c
         with:
           branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
