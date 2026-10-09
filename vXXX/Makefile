@@ -15,10 +15,16 @@ build/plot.pdf: plot.py ../matplotlibrc ../header-matplotlib.tex | build
 build/$(TEXFILE).pdf: build/plot.pdf
 
 build/$(TEXFILE).pdf: $(TEXFILE).tex FORCE | build
-	TEXINPUTS=$(HEADERS): latexmk -r $(HEADERS)/latexmkrc $<
+	TEXINPUTS=$(HEADERS)//: \
+	BIBINPUTS=$(HEADERS)//: \
+	max_print_line=104857 \
+	latexmk -r $(HEADERS)/latexmkrc $<
 
 preview: $(TEXFILE).tex FORCE | build
-	TEXINPUTS=$(HEADERS): latexmk -r $(HEADERS)/latexmkrc $<
+	TEXINPUTS=$(HEADERS)//: \
+	BIBINPUTS=$(HEADERS)//: \
+	max_print_line=104857 \
+	latexmk -r $(HEADERS)/latexmkrc -pvc $<
 
 build:
 	mkdir -p build
